@@ -12,10 +12,8 @@ class TodoList {
         this.el = el;
         el.addEventListener('click', (event) => {
             if (event.target.classList.contains('delete-task')) {
-               // console.log(event.target.parentElement.dataset.id);
                 this.removeTodo(event.target.parentElement.dataset.id);
             } else if (event.target.classList.contains('set-status')) {
-                //console.log(event.target.parentElement.dataset.id);
                 this.changeStatus(event.target.parentElement.dataset.id);
             }
         })
@@ -37,9 +35,7 @@ class TodoList {
         this.todos = this.todos.filter((el) => {
             return el.id !== elemId;
         });
-        // console.log(this.todos);
-        // console.log(elemId);
-        // document.querySelector(`[data-id=${elemId}]`).remove();
+        document.querySelector(`[data-id='${elemId}']`).remove();
     }
 
     getTodos() {
@@ -49,12 +45,10 @@ class TodoList {
     changeStatus(id) {
         let index = this.todos.findIndex((el) => el.id === id);
         this.todos[index].status = !this.todos[index].status;
-        //console.log(document.querySelector(`[data-id=${id}]`));
         if (this.todos[index].status === true) {
-          //  console.log(document.querySelector(`[data-id=${id}]`));
-            document.querySelector(`[data-id=${id}]`).style.backgroundColor = 'green';
+            document.querySelector(`[data-id='${id}']`).style.backgroundColor = 'green';
         } else {
-            document.querySelector(`[data-id=${id}]`).style.backgroundColor = 'yellow';
+            document.querySelector(`[data-id='${id}']`).style.backgroundColor = 'yellow';
         }
     }
 
@@ -89,9 +83,7 @@ class TodoList {
             }
             lis += `<li data-id="${el.id}">${el.value}<button class="set-status">Change status</button><button class="delete-task">Delete</button></li>`;
         }
-
         this.el.innerHTML = lis;
-
     }}
 
 
